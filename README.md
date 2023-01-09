@@ -49,4 +49,4 @@
 #### HTTP запросы:
 
 - Запрос на пост новой записи (на оставление комментария аналогичный):
-<p align = "center"><img src="https://github.com/Sa2ap/lab2/blob/main/Site5.PNG"/width = 600></p>
+<p align = "center"><img src="(https://github.com/Sa2ap/lab3/blob/main/lab3.5.PNG)"/width = 600></p>
