@@ -131,6 +131,7 @@
 <p><b><u><?php echo $row['name']; ?></u> : </b><?php echo $row['message']; ?></p>
 
 <?php }} ?>
+```
 
 Код index.php
 ```sh
