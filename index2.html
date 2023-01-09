@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Untitled</title>
+  <meta charset="utf-8">
+  <style type="text/css">    .black {
+      background-color: #000000;
+      color: #FFFFFF;
+  }
+
+  </style>
+
+  <script>
+document.addEventListener( "DOMContentLoaded" , function() {
+let start = document.querySelector('button');
+let num = 1;
+start.addEventListener('click', function () {
+	let btn = document.createElement('button');
+		document.body.appendChild(btn)
+		btn.innerHTML = `Зайти в чат ${++num}`;
+		btn.id = `first${num}`;
+
+        btn.addEventListener('click', function () {
+	    
+      	location.href="http://localhost./";
+        });
+
+	});
+
+   });
+  </script>
+</head>
+<body>
+<button>Создать чат</button>
+</body>
+</html>
+
+
+
+<input type="button" name = "chat" value="Зайти в чат 1 " onClick ='location.href="http://localhost./"'>
