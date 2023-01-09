@@ -50,3 +50,125 @@
 
 - Запрос на пост новой записи (на оставление комментария аналогичный):
 <p align = "center"><img src="https://github.com/Sa2ap/lab3/blob/main/lab3.5.PNG"/width = 100%></p>
+
+# Значимые Фрагменты кода 
+ _______________________
+  Код CSS
+ ```sh 
+  <style>
+	.container{
+		width: 50%;
+		padding: 10px;
+		background-color: #f4511e;
+		border: 2px solid;
+		box-shadow: 0px 0px 10px;
+	}
+	#display{
+		padding: 10px;
+		background-color: #f1f1f1;
+		border: 1px solid;
+		border-radius: 5px;
+		box-shadow: inset 0px 0px 10px;
+		overflow-x: scroll;
+	}
+	p{
+		font-family: Calibri;
+		font-style: italic;
+		padding: 10px;
+		display: table;
+		max-width: 100%;
+		background-color: #ffffff;
+		border: 1px solid;
+		border-radius: 5px;
+		box-shadow: 1px 1px 3px;
+	}
+	body{
+		margin: 10px;
+		font-family: sans-serif;
+	}
+	b{
+		font-family: sans-serif;
+		font-style: normal;
+	}
+</style>
+```
+Код chatlog
+```sh
+<?php 
+	include("configurations/connection.php");
+
+		if(isset($_POST['send'])==1){
+			
+			$name = $_POST['name'];
+			$message = mysqli_real_escape_string($dbc, $_POST['message']);
+
+			$q = "INSERT INTO chatroom (name, message) VALUES ('$name', '$message')";
+			$r = mysqli_query($dbc,$q);
+
+			$q = "SELECT COUNT(id) AS num FROM chatroom ORDER BY id ASC";
+			$r = mysqli_fetch_assoc(mysqli_query($dbc,$q));
+
+			if($r['num']>6){
+				$q = "DELETE FROM chatroom LIMIT 1;";
+				mysqli_query($dbc,$q);
+			}					
+			
+			header("Location: index.php?name=".$name);
+
+		}
+
+	$q="SELECT * FROM chatroom";
+	$r=mysqli_query($dbc,$q);
+
+	while($row=mysqli_fetch_assoc($r)){
+		if($row['name']==$_GET['name']){
+ ?>
+
+<p><b><u style="color: blue;">You</u> : </b><?php echo $row['message']; ?></p>
+
+<?php }else{ ?>
+
+<p><b><u><?php echo $row['name']; ?></u> : </b><?php echo $row['message']; ?></p>
+
+<?php }} ?>
+
+Код index.php
+```sh
+<?php 
+	include("configurations/connection.php");
+
+		if(isset($_POST['send'])==1){
+			
+			$name = $_POST['name'];
+			$message = mysqli_real_escape_string($dbc, $_POST['message']);
+
+			$q = "INSERT INTO chatroom (name, message) VALUES ('$name', '$message')";
+			$r = mysqli_query($dbc,$q);
+
+			$q = "SELECT COUNT(id) AS num FROM chatroom ORDER BY id ASC";
+			$r = mysqli_fetch_assoc(mysqli_query($dbc,$q));
+
+			if($r['num']>6){
+				$q = "DELETE FROM chatroom LIMIT 1;";
+				mysqli_query($dbc,$q);
+			}					
+			
+			header("Location: index.php?name=".$name);
+
+		}
+
+	$q="SELECT * FROM chatroom";
+	$r=mysqli_query($dbc,$q);
+
+	while($row=mysqli_fetch_assoc($r)){
+		if($row['name']==$_GET['name']){
+ ?>
+
+<p><b><u style="color: blue;">You</u> : </b><?php echo $row['message']; ?></p>
+
+<?php }else{ ?>
+
+<p><b><u><?php echo $row['name']; ?></u> : </b><?php echo $row['message']; ?></p>
+
+<?php }} ?>
+```
